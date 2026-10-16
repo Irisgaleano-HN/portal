@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetCare | Clínica Veterinaria & Tienda en Línea</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0284c7',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        accent: {
+                            500: '#10b981',
+                            600: '#059669',
+                        },
+                        warm: {
+                            500: '#f59e0b',
+                            600: '#d97706',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Transiciones suavizadas y scrollbar personalizado */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brand-500 selection:text-white flex flex-col min-h-screen">
+
+    <!-- BANNER SUPERIOR DE ATENCIÓN DE URGENCIAS -->
+    <div class="bg-brand-900 text-white text-xs py-2 px-4 text-center font-medium flex justify-between items-center max-w-full overflow-hidden">
+        <div class="container mx-auto flex justify-between items-center">
+            <span class="flex items-center gap-2">
+                <span class="relative flex h-2 w-2">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-500 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-2 w-2 bg-accent-500"></span>
+                </span>
+                Atención Médica & Asesorías Veterinarias En Línea | Envíos a todo Honduras
+            </span>
+            <div class="hidden md:flex items-center gap-6">
+                <a href="tel:+50497335455" class="hover:text-cyan-300 transition-colors"><i class="fas fa-phone-alt mr-1"></i> +504 9733-5455</a>
+                <span class="text-slate-400">|</span>
+                <span><i class="far fa-clock mr-1"></i> Lun - Sáb: 8:00 AM - 6:00 PM</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="sticky top-0 z-40 glass-nav border-b border-slate-200/80 shadow-sm transition-all duration-300">
+        <nav class="container mx-auto px-4 lg:px-8 py-3.5 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-700 to-brand-500 text-white flex items-center justify-center shadow-md shadow-brand-500/20 group-hover:scale-105 transition-transform">
+                    <i class="fas fa-[#0284c7] fa-paw text-xl text-white"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-extrabold text-slate-900 tracking-tight block leading-none">PetCare<span class="text-brand-600">.hn</span></span>
+                    <span class="text-[10px] text-slate-500 font-semibold tracking-wider uppercase">Salud & Nutrición Pet</span>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation Links -->
+            <div class="hidden lg:flex items-center space-x-8 font-medium text-slate-600 text-sm">
+                <a href="#home" class="hover:text-brand-600 transition-colors py-1">Inicio</a>
+                <a href="#quienes-somos" class="hover:text-brand-600 transition-colors py-1">Quiénes Somos</a>
+                <a href="#catalogo" class="hover:text-brand-600 transition-colors py-1">Catálogo y Servicios</a>
+                <a href="#recordatorios" class="hover:text-brand-600 transition-colors py-1">Recordatorios</a>
+                <a href="#suscripciones" class="hover:text-brand-600 transition-colors py-1">Suscripciones</a>
+                <a href="#contacto" class="hover:text-brand-600 transition-colors py-1">Contáctanos</a>
+            </div>
+
+            <!-- Header Actions -->
+            <div class="flex items-center gap-3">
+                <!-- Cart Button -->
+                <button onclick="toggleCartDrawer()" class="relative p-2.5 rounded-xl bg-slate-100 hover:bg-brand-50 text-slate-700 hover:text-brand-600 transition-all duration-200 flex items-center justify-center" aria-label="Ver Carrito">
+                    <i class="fas fa-shopping-bag text-lg"></i>
+                    <span id="cartBadge" class="absolute -top-1 -right-1 bg-warm-500 text-white text-[11px] font-bold w-5 h-5 rounded-full flex items-center justify-center shadow-sm">0</span>
+                </button>
+
+                <!-- CTA WhatsApp directo -->
+                <a href="https://wa.me/50497335455?text=Hola%20%F0%9F%98%8A%20Deseo%20m%C3%A1s%20informaci%C3%B3n%20sobre%20sus%20servicios%20veterinarios" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-white text-xs md:text-sm font-semibold px-4 py-2.5 rounded-xl shadow-md shadow-accent-500/20 hover:shadow-lg transition-all transform hover:-translate-y-0.5">
+                    <i class="fab fa-whatsapp text-lg"></i>
+                    <span>Contactar</span>
+                </a>
+
+                <!-- Mobile Menu Toggle Button -->
+                <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="lg:hidden p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100" aria-label="Abrir menú">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Mobile Navigation Drawer -->
+        <div id="mobileMenu" class="hidden lg:hidden border-t border-slate-200 bg-white px-4 pt-3 pb-6 space-y-3">
+            <a href="#home" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 hover:text-brand-600 font-medium">Inicio</a>
+            <a href="#quienes-somos" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 hover:text-brand-600 font-medium">Quiénes Somos</a>
+            <a href="#catalogo" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 hover:text-brand-600 font-medium">Catálogo y Servicios</a>
+            <a href="#recordatorios" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 hover:text-brand-600 font-medium">Recordatorios de Vacunación</a>
+            <a href="#suscripciones" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 hover:text-brand-600 font-medium">Suscripciones Mensuales</a>
+            <a href="#contacto" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 hover:text-brand-600 font-medium">Contáctanos</a>
+            <a href="https://wa.me/50497335455" target="_blank" class="w-full mt-2 flex items-center justify-center gap-2 bg-accent-500 text-white py-2.5 rounded-xl font-semibold">
+                <i class="fab fa-whatsapp"></i> Chat WhatsApp
+            </a>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <!-- 1. HERO SECTION -->
+        <section id="home" class="relative bg-gradient-to-b from-brand-50 via-white to-slate-50 py-16 lg:py-24 overflow-hidden">
+            <div class="container mx-auto px-4 lg:px-8">
+                <div class="grid lg:grid-cols-12 gap-12 items-center">
+                    <!-- Text Content -->
+                    <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-100/70 border border-brand-200 text-brand-800 text-xs font-semibold">
+                            <i class="fas fa-shield-alt text-brand-600"></i>
+                            <span>Atención Veterinaria Integral en Honduras</span>
+                        </div>
+                        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
+                            Salud, nutrición y cuidado especializado <span class="text-brand-600">para tu mascota</span>.
+                        </h1>
+                        <p class="text-slate-600 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                            Desde consultas clínicas presenciales y asesoría veterinaria en línea, hasta suscripciones mensuales de alimento premium y planes de vacunación personalizados.
+                        </p>
+                        <div class="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                            <a href="#catalogo" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-semibold shadow-lg shadow-brand-600/30 hover:shadow-xl transition-all text-center">
+                                Ver Catálogo y Servicios
+                            </a>
+                            <a href="https://wa.me/50497335455?text=Hola%20%F0%9F%98%8A%20Me%20gustar%C3%ADa%20agendar%20una%20cita%20veterinaria%20o%20asesor%C3%ADa" target="_blank" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-white hover:bg-slate-50 text-slate-800 font-semibold border border-slate-300 shadow-sm transition-all flex items-center justify-center gap-2">
+                                <i class="fab fa-whatsapp text-accent-500 text-lg"></i>
+                                Agendar Cita
+                            </a>
+                        </div>
+                        <!-- Guarantees Badge Group -->
+                        <div class="pt-6 border-t border-slate-200/80 grid grid-cols-3 gap-4 text-center lg:text-left">
+                            <div>
+                                <p class="text-xl sm:text-2xl font-bold text-slate-900">+1,500</p>
+                                <p class="text-xs text-slate-500">Mascotas atendidas</p>
+                            </div>
+                            <div>
+                                <p class="text-xl sm:text-2xl font-bold text-slate-900">100%</p>
+                                <p class="text-xs text-slate-500">Médicos Certificados</p>
+                            </div>
+                            <div>
+                                <p class="text-xl sm:text-2xl font-bold text-slate-900">4.9 ★</p>
+                                <p class="text-xs text-slate-500">Satisfacción cliente</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Image Showcase -->
+                    <div class="lg:col-span-5 relative">
+                        <div class="relative mx-auto max-w-md lg:max-w-none">
+                            <div class="absolute -inset-1 rounded-3xl bg-gradient-to-r from-brand-500 to-accent-500 opacity-20 blur-xl"></div>
+                            <img src="https://images.unsplash.com/photo-1628009368231-7bb7cfcb0def?auto=format&fit=crop&w=800&q=80" alt="Atención Veterinaria Profesional" class="relative rounded-3xl shadow-2xl object-cover w-full h-[400px] border border-white/50">
+                            
+                            <!-- Floating Card -->
+                            <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-2xl shadow-xl border border-slate-100 flex items-center gap-3 hidden sm:flex">
+                                <div class="w-12 h-12 rounded-xl bg-accent-50 text-accent-600 flex items-center justify-center">
+                                    <i class="fas fa-stethoscope text-xl"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-slate-500 font-medium">Asesoría Médica</p>
+                                    <p class="text-sm font-bold text-slate-800">Respuesta Inmediata</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. BENEFICIOS Y GARANTÍAS -->
+        <section class="py-12 bg-white border-y border-slate-200/60">
+            <div class="container mx-auto px-4 lg:px-8">
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Beneficio 1 -->
+                    <div class="flex items-start gap-4 p-4 rounded-2xl bg-slate-50/50 border border-slate-100 hover:border-brand-200 transition-all">
+                        <div class="w-12 h-12 rounded-xl bg-brand-100 text-brand-600 flex items-center justify-center shrink-0 font-bold">
+                            <i class="fas fa-user-md text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-slate-900 text-sm mb-1">Médicos Calificados</h3>
+                            <p class="text-xs text-slate-600 leading-relaxed">Profesionales de la salud veterinaria con constante actualización académica.</p>
+                        </div>
+                    </div>
+                    <!-- Beneficio 2 -->
+                    <div class="flex items-start gap-4 p-4 rounded-2xl bg-slate-50/50 border border-slate-100 hover:border-brand-200 transition-all">
+                        <div class="w-12 h-12 rounded-xl bg-brand-100 text-brand-600 flex items-center justify-center shrink-0 font-bold">
+                            <i class="fas fa-truck-fast text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-slate-900 text-sm mb-1">Entregas a Domicilio</h3>
+                            <p class="text-xs text-slate-600 leading-relaxed">Despacho de medicamentos y alimentos directamente en tu hogar.</p>
+                        </div>
+                    </div>
+                    <!-- Beneficio 3 -->
+                    <div class="flex items-start gap-4 p-4 rounded-2xl bg-slate-50/50 border border-slate-100 hover:border-brand-200 transition-all">
+                        <div class="w-12 h-12 rounded-xl bg-brand-100 text-brand-600 flex items-center justify-center shrink-0 font-bold">
+                            <i class="fas fa-calendar-check text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-slate-900 text-sm mb-1">Suscripción Flexible</h3>
+                            <p class="text-xs text-slate-600 leading-relaxed">Sin plazos forzosos. Modifica o cancela tus entregas mensuales libremente.</p>
+                        </div>
+                    </div>
+                    <!-- Beneficio 4 -->
+                    <div class="flex items-start gap-4 p-4 rounded-2xl bg-slate-50/50 border border-slate-100 hover:border-brand-200 transition-all">
+                        <div class="w-12 h-12 rounded-xl bg-brand-100 text-brand-600 flex items-center justify-center shrink-0 font-bold">
+                            <i class="fas fa-headset text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-slate-900 text-sm mb-1">Soporte Continuo</h3>
+                            <p class="text-xs text-slate-600 leading-relaxed">Atención rápida y orientación rápida a través de nuestro canal de WhatsApp.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. QUIÉNES SOMOS Y PROCESO -->
+        <section id="quienes-somos" class="py-16 lg:py-24 bg-slate-50">
+            <div class="container mx-auto px-4 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <span class="text-brand-600 font-semibold text-xs uppercase tracking-wider">Nuestra Propuesta de Valor</span>
+                    <h2 class="text-3xl font-extrabold text-slate-900 mt-2">Compromiso médico, transparencia y amor por los animales</h2>
+                    <p class="text-slate-600 text-sm mt-3">En PetCare.hn combinamos la excelencia clínica con la comodidad digital para brindarle a tu mascota una vida más saludable y activa.</p>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-12 items-center mb-16">
+                    <!-- Historia & Respaldo -->
+                    <div class="space-y-4">
+                        <h3 class="text-xl font-bold text-slate-900">Una historia basada en el bienestar integral</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Fundada con el firme propósito de modernizar los servicios veterinarios en Honduras, nuestra clínica ofrece un enfoque preventivo integral. No solo atendemos emergencias o consultas rutinarias, sino que construimos un plan nutricional y epidemiológico único para cada paciente.
+                        </p>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Garantizamos máxima seguridad clínica, medicamentos de marcas certificadas internacionalmente y una comunicación cercana sin complicaciones.
+                        </p>
+                        <div class="pt-2 grid grid-cols-2 gap-4">
+                            <div class="border-l-4 border-brand-500 pl-4 py-1">
+                                <p class="font-bold text-slate-800 text-sm">Diagnóstico Preciso</p>
+                                <p class="text-xs text-slate-500">Evaluaciones integrales</p>
+                            </div>
+                            <div class="border-l-4 border-accent-500 pl-4 py-1">
+                                <p class="font-bold text-slate-800 text-sm">Seguimiento Digital</p>
+                                <p class="text-xs text-slate-500">Recordatorios vía WhatsApp</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Proceso en 4 Pasos -->
+                    <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-sm border border-slate-200">
+                        <h3 class="text-lg font-bold text-slate-900 mb-6 flex items-center gap-2">
+                            <i class="fas fa-list-ol text-brand-600"></i> Proceso de Atención Veterinaria
+                        </h3>
+                        <div class="space-y-6">
+                            <div class="flex gap-4">
+                                <div class="w-8 h-8 rounded-full bg-brand-100 text-brand-700 font-bold text-sm flex items-center justify-center shrink-0">1</div>
+                                <div>
+                                    <h4 class="text-sm font-bold text-slate-800">Evaluación Inicial</h4>
+                                    <p class="text-xs text-slate-600">Revisión física presencial o consulta interactiva en línea para analizar antecedentes.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="w-8 h-8 rounded-full bg-brand-100 text-brand-700 font-bold text-sm flex items-center justify-center shrink-0">2</div>
+                                <div>
+                                    <h4 class="text-sm font-bold text-slate-800">Plan de Tratamiento / Nutrición</h4>
+                                    <p class="text-xs text-slate-600">Diseño del esquema de vacunación, suplementos o medicamentos requeridos.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="w-8 h-8 rounded-full bg-brand-100 text-brand-700 font-bold text-sm flex items-center justify-center shrink-0">3</div>
+                                <div>
+                                    <h4 class="text-sm font-bold text-slate-800">Suministro & Entrega</h4>
+                                    <p class="text-xs text-slate-600">Envío directo de insumos o aplicación en instalaciones con altos protocolos.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="w-8 h-8 rounded-full bg-brand-100 text-brand-700 font-bold text-sm flex items-center justify-center shrink-0">4</div>
+                                <div>
+                                    <h4 class="text-sm font-bold text-slate-800">Monitoreo Periódico</h4>
+                                    <p class="text-xs text-slate-600">Recordatorios automáticos para no perder ninguna vacuna o dosis de desparasitación.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonios Simulados -->
+                <div>
+                    <h3 class="text-center text-lg font-bold text-slate-900 mb-8">Lo que dicen nuestros clientes</h3>
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200/80">
+                            <div class="flex text-warm-500 mb-3 text-xs">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p class="text-xs text-slate-600 italic mb-4">"La suscripción mensual de alimento y suplementos para mi perro Rocky me ahorró muchísimo tiempo. Además el aviso de vacunas por WhatsApp es súper puntual."</p>
+                            <div class="font-bold text-xs text-slate-800">María Fernanda G.</div>
+                            <div class="text-[11px] text-slate-400">Tegucigalpa</div>
+                        </div>
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200/80">
+                            <div class="flex text-warm-500 mb-3 text-xs">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p class="text-xs text-slate-600 italic mb-4">"Agendé la tele-orientación veterinaria cuando mi gatita no quería comer. Me guiaron paso a paso con amabilidad y enviaron los medicamentos."</p>
+                            <div class="font-bold text-xs text-slate-800">Carlos Eduardo M.</div>
+                            <div class="text-[11px] text-slate-400">San Pedro Sula</div>
+                        </div>
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200/80">
+                            <div class="flex text-warm-500 mb-3 text-xs">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p class="text-xs text-slate-600 italic mb-4">"Excelente atención clínica, precios transparentes en Lempiras y sin sorpresas. La estética canina dejó a mi mascota impecable."</p>
+                            <div class="font-bold text-xs text-slate-800">Sonia R.</div>
+                            <div class="text-[11px] text-slate-400">Comayagüela</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. MODULOS INTERACTIVOS (Recordatorio & Suscripciones) -->
+        <section id="recordatorios" class="py-16 bg-white border-b border-slate-200/80">
+            <div class="container mx-auto px-4 lg:px-8">
+                <div class="grid lg:grid-cols-2 gap-12">
+                    
+                    <!-- CALCULADORA DE RECORDATORIO DE VACUNACIÓN -->
+                    <div class="bg-brand-50/60 p-6 sm:p-8 rounded-3xl border border-brand-100 flex flex-col justify-between">
+                        <div>
+                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-100 text-brand-700 text-xs font-bold mb-4">
+                                <i class="fas fa-syringe"></i> Control Epidemiológico
+                            </div>
+                            <h3 class="text-2xl font-bold text-slate-900 mb-2">Simulador & Recordatorio de Vacunación</h3>
+                            <p class="text-slate-600 text-xs sm:text-sm mb-6">Selecciona el tipo de mascota y su edad para conocer la próxima vacuna recomendada y programar recordatorios automáticos por WhatsApp.</p>
+                            
+                            <form id="reminderForm" onsubmit="event.preventDefault(); calculateReminder();" class="space-y-4">
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-700 mb-1">Especie Mascota</label>
+                                    <select id="petType" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-brand-500 outline-none">
+                                        <option value="perro">Perro (Canino)</option>
+                                        <option value="gato">Gato (Felino)</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-700 mb-1">Edad Aproximada</label>
+                                    <select id="petAge" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-brand-500 outline-none">
+                                        <option value="cachorro">Cachorro / Gatito (2-6 meses)</option>
+                                        <option value="joven">Joven (6-12 meses)</option>
+                                        <option value="adulto">Adulto (1 - 7 años)</option>
+                                        <option value="senior">Senior (+7 años)</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-semibold py-2.5 rounded-xl text-xs transition-colors shadow-sm">
+                                    Calcular Esquema Recomendado
+                                </button>
+                            </form>
+
+                            <div id="reminderResult" class="hidden mt-6 p-4 bg-white rounded-2xl border border-brand-200">
+                                <p class="text-xs font-bold text-brand-800 mb-1" id="resTitle"></p>
+                                <p class="text-xs text-slate-600 mb-3" id="resDesc"></p>
+                                <a id="btnReminderWA" href="#" target="_blank" class="inline-flex items-center gap-2 text-xs font-bold text-accent-600 hover:underline">
+                                    <i class="fab fa-whatsapp text-sm"></i> Agendar Recordatorio en WhatsApp
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- MÓDULO DE SUSCRIPCIÓN MENSUAL PERSONALIZADA -->
+                    <div id="suscripciones" class="bg-slate-900 text-white p-6 sm:p-8 rounded-3xl flex flex-col justify-between shadow-xl">
+                        <div>
+                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-warm-500/20 text-warm-500 text-xs font-bold mb-4 border border-warm-500/30">
+                                <i class="fas fa-box-open"></i> Planes de Nutrición Continua
+                            </div>
+                            <h3 class="text-2xl font-bold mb-2">Suscripción Mensual Personalizada</h3>
+                            <p class="text-slate-300 text-xs sm:text-sm mb-6">Recibe mensualmente en tu puerta el alimento premium ideal y el lote de vitaminas que tu mascota necesita, sin preocupaciones.</p>
+
+                            <div class="space-y-4">
+                                <div class="bg-slate-800/80 p-4 rounded-2xl border border-slate-700 flex justify-between items-center">
+                                    <div>
+                                        <h4 class="text-sm font-bold text-white">Plan Básico Nutri-Health</h4>
+                                        <p class="text-xs text-slate-400">Alimento Premium según peso + Complejo B básico</p>
+                                    </div>
+                                    <span class="text-sm font-extrabold text-warm-500">Desde L 850/mes</span>
+                                </div>
+                                <div class="bg-slate-800/80 p-4 rounded-2xl border border-slate-700 flex justify-between items-center">
+                                    <div>
+                                        <h4 class="text-sm font-bold text-white">Plan Pro Protect + Vits</h4>
+                                        <p class="text-xs text-slate-400">Alimento Super Premium + Omega 3 + Articulaciones</p>
+                                    </div>
+                                    <span class="text-sm font-extrabold text-warm-500">Desde L 1,450/mes</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-8 pt-4 border-t border-slate-800">
+                            <a href="https://wa.me/50497335455?text=Hola%20%F0%9F%98%8A%20Me%20interesa%20personalizar%20un%20plan%20de%20Suscripci%C3%B3n%20Mensual%20de%20Alimentos%20y%20Vitaminas" target="_blank" class="w-full bg-accent-500 hover:bg-accent-600 text-white font-semibold py-3 rounded-xl text-xs flex items-center justify-center gap-2 transition-all">
+                                <i class="fab fa-whatsapp text-lg"></i> Configurar Suscripción con Asesor
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. CATÁLOGO Y SERVICIOS -->
+        <section id="catalogo" class="py-16 bg-slate-50">
+            <div class="container mx-auto px-4 lg:px-8">
+                
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+                    <div>
+                        <span class="text-brand-600 font-semibold text-xs uppercase tracking-wider">Tienda & Servicios</span>
+                        <h2 class="text-3xl font-extrabold text-slate-900 mt-1">Catálogo Clínico & Productos</h2>
+                    </div>
+                    <p class="text-xs text-slate-500 max-w-md">Todos los precios expresados en Lempiras Hondureños (L / HNL). Selecciona tus ítems o consulta directamente con el equipo de soporte.</p>
+                </div>
+
+                <!-- Buscador y Filtros Controles -->
+                <div class="bg-white p-4 sm:p-6 rounded-2xl shadow-sm border border-slate-200 mb-8 space-y-4">
+                    <div class="grid md:grid-cols-12 gap-4 items-center">
+                        <!-- Buscador por Texto -->
+                        <div class="md:col-span-5 relative">
+                            <i class="fas fa-search absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                            <input type="text" id="searchInput" oninput="filterCatalog()" placeholder="Buscar por servicio, medicamento o alimento..." class="w-full pl-9 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-brand-500 focus:bg-white outline-none transition-all">
+                        </div>
+
+                        <!-- Filtro por Categoria -->
+                        <div class="md:col-span-4">
+                            <select id="categoryFilter" onchange="filterCatalog()" class="w-full py-2.5 px-3 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-700 focus:ring-2 focus:ring-brand-500 outline-none">
+                                <option value="all">Todas las Categorías</option>
+                                <option value="medico">Servicios Médicos</option>
+                                <option value="asesoria">Asesoría Online</option>
+                                <option value="suscripcion">Suscripciones Mensuales</option>
+                                <option value="grooming">Cuidados & Estética</option>
+                            </select>
+                        </div>
+
+                        <!-- Filtro por Precio Máximo -->
+                        <div class="md:col-span-3 flex flex-col justify-center">
+                            <div class="flex justify-between items-center text-xs text-slate-600 font-medium mb-1">
+                                <span>Precio Máx:</span>
+                                <span id="priceValue" class="font-bold text-brand-600">L 3,000</span>
+                            </div>
+                            <input type="range" id="priceRange" min="200" max="3000" step="100" value="3000" oninput="updatePriceLabel(this.value); filterCatalog();" class="w-full accent-brand-600 cursor-pointer">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Grid de Tarjetas del Catálogo -->
+                <div id="catalogGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <!-- Dinámicamente poblado vía JS -->
+                </div>
+
+                <!-- Mensaje de Búsqueda Vacía -->
+                <div id="emptyCatalog" class="hidden text-center py-12">
+                    <i class="fas fa-search-minus text-4xl text-slate-300 mb-3"></i>
+                    <p class="text-sm font-semibold text-slate-600">No encontramos resultados para tu búsqueda.</p>
+                    <button onclick="resetFilters()" class="mt-3 text-xs text-brand-600 hover:underline font-bold">Restablecer Filtros</button>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 6. CONTACTO Y UBICACIÓN -->
+        <section id="contacto" class="py-16 bg-white border-t border-slate-200/80">
+            <div class="container mx-auto px-4 lg:px-8">
+                <div class="grid lg:grid-cols-12 gap-12">
+                    
+                    <!-- Información de Contacto -->
+                    <div class="lg:col-span-5 space-y-6">
+                        <span class="text-brand-600 font-semibold text-xs uppercase tracking-wider">Atención Directa</span>
+                        <h2 class="text-3xl font-extrabold text-slate-900">¿Tienes consultas sobre tu mascota?</h2>
+                        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                            Estamos listos para atenderte en nuestra sucursal o despejar tus dudas en línea sobre cotizaciones, citas médicas y planes alimenticios.
+                        </p>
+
+                        <div class="space-y-4 pt-2">
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center shrink-0">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xs font-bold text-slate-900">Ubicación</h4>
+                                    <p class="text-xs text-slate-600">Blvd. Morazán, Tegucigalpa, Honduras</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center shrink-0">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xs font-bold text-slate-900">Teléfono / WhatsApp</h4>
+                                    <p class="text-xs text-slate-600">+504 9733-5455</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center shrink-0">
+                                    <i class="far fa-clock"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xs font-bold text-slate-900">Horarios de Atención</h4>
+                                    <p class="text-xs text-slate-600">Lunes a Sábado: 8:00 AM - 6:00 PM</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Botón WhatsApp Directo -->
+                        <div class="pt-4">
+                            <a href="https://wa.me/50497335455?text=Hola%20%F0%9F%98%8A%20Vengo%20de%20la%20secci%C3%B3n%20de%20contacto%20y%20deseo%20m%C3%A1s%20informaci%C3%B3n" target="_blank" class="inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-white font-semibold px-6 py-3 rounded-xl text-xs shadow-md transition-all">
+                                <i class="fab fa-whatsapp text-lg"></i> Abrir Chat en WhatsApp (+504 9733-5455)
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Formulario de Mensaje Rápido -->
+                    <div class="lg:col-span-7 bg-slate-50 p-6 sm:p-8 rounded-3xl border border-slate-200">
+                        <h3 class="text-lg font-bold text-slate-900 mb-4">Envíanos un Mensaje</h3>
+                        <form onsubmit="handleContactSubmit(event)" class="space-y-4">
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-700 mb-1">Nombre Completo</label>
+                                    <input type="text" required class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-brand-500 outline-none">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-700 mb-1">Teléfono o WhatsApp</label>
+                                    <input type="tel" required class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-brand-500 outline-none">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1">Tipo de Consulta</label>
+                                <select class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-brand-500 outline-none">
+                                    <option>Consulta Médica / Cita</option>
+                                    <option>Asesoría Veterinaria En Línea</option>
+                                    <option>Suscripción de Alimentos</option>
+                                    <option>Otro</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1">Mensaje / Detalle</label>
+                                <textarea rows="4" required class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs focus:ring-2 focus:ring-brand-500 outline-none" placeholder="Cuéntanos sobre tu mascota..."></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-semibold py-3 rounded-xl text-xs transition-colors shadow-sm">
+                                Enviar Consulta Vía WhatsApp
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800 text-xs">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div class="space-y-3">
+                    <div class="flex items-center gap-2">
+                        <div class="w-8 h-8 rounded-lg bg-brand-600 text-white flex items-center justify-center font-bold">
+                            <i class="fas fa-paw"></i>
+                        </div>
+                        <span class="text-lg font-bold text-white">PetCare.hn</span>
+                    </div>
+                    <p class="text-slate-400 text-xs">Plataforma integral de servicios médicos veterinarios y productos para el bienestar de mascotas en Honduras.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-3">Secciones</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="hover:text-white transition-colors">Inicio</a></li>
+                        <li><a href="#quienes-somos" class="hover:text-white transition-colors">Quiénes Somos</a></li>
+                        <li><a href="#catalogo" class="hover:text-white transition-colors">Catálogo y Servicios</a></li>
+                        <li><a href="#recordatorios" class="hover:text-white transition-colors">Recordatorios de Vacunación</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-3">Servicios Populares</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#catalogo" class="hover:text-white transition-colors">Consulta Veterinaria General</a></li>
+                        <li><a href="#catalogo" class="hover:text-white transition-colors">Asesoría Tele-Veterinaria</a></li>
+                        <li><a href="#suscripciones" class="hover:text-white transition-colors">Suscripción Alimento + Vitaminas</a></li>
+                        <li><a href="#catalogo" class="hover:text-white transition-colors">Profilaxis Dental</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-3">Atención & Ayuda</h4>
+                    <p class="mb-2">¿Necesitas soporte inmediato?</p>
+                    <a href="https://wa.me/50497335455" target="_blank" class="inline-flex items-center gap-2 text-accent-500 font-bold hover:underline">
+                        <i class="fab fa-whatsapp"></i> +504 9733-5455
+                    </a>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-slate-800 text-center text-slate-500">
+                <p>&copy; 2026 PetCare Honduras. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- CARRITO SIDE-DRAWER MODAL -->
+    <div id="cartBackdrop" onclick="toggleCartDrawer()" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+    <div id="cartDrawer" class="fixed top-0 right-0 h-full w-full max-w-md bg-white z-50 shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col">
+        <!-- Cart Header -->
+        <div class="p-4 border-b border-slate-200 flex items-center justify-between bg-slate-50">
+            <div class="flex items-center gap-2">
+                <i class="fas fa-shopping-bag text-brand-600 text-lg"></i>
+                <h3 class="font-bold text-slate-900 text-base">Carrito de Compras / Servicios</h3>
+            </div>
+            <button onclick="toggleCartDrawer()" class="p-2 text-slate-400 hover:text-slate-700 text-lg" aria-label="Cerrar Carrito">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <!-- Cart Items List -->
+        <div id="cartItemsContainer" class="flex-grow overflow-y-auto p-4 space-y-4">
+            <!-- Dinámico vía Javascript -->
+        </div>
+
+        <!-- Cart Summary & Checkout -->
+        <div class="p-4 border-t border-slate-200 bg-slate-50 space-y-3">
+            <div class="flex justify-between items-center text-xs text-slate-600">
+                <span>Subtotal Referencial:</span>
+                <span id="cartSubtotal" class="font-bold text-slate-800">L 0.00</span>
+            </div>
+            <div class="flex justify-between items-center text-sm font-extrabold text-slate-900 pt-1 border-t border-slate-200">
+                <span>Total Estimado:</span>
+                <span id="cartTotal" class="text-brand-600">L 0.00</span>
+            </div>
+            <p class="text-[11px] text-slate-500 leading-tight">
+                * El pedido se enviará en formato de lista formateada a WhatsApp para coordinar disponibilidad, agenda de cita o envío.
+            </p>
+            <button onclick="checkoutWhatsApp()" class="w-full bg-accent-500 hover:bg-accent-600 text-white font-bold py-3 rounded-xl text-xs flex items-center justify-center gap-2 shadow-lg shadow-accent-500/20 transition-all">
+                <i class="fab fa-whatsapp text-lg"></i> Finalizar Pedido por WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION CONTAINER -->
+    <div id="toast" class="fixed bottom-5 right-5 bg-slate-900 text-white text-xs px-4 py-3 rounded-xl shadow-2xl z-50 transform translate-y-20 opacity-0 transition-all duration-300 flex items-center gap-3 border border-slate-700">
+        <i id="toastIcon" class="fas fa-check-circle text-accent-500 text-base"></i>
+        <span id="toastMessage">Acción completada</span>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // BASE DE DATOS DE PRODUCTOS Y SERVICIOS VETERINARIOS
+        const PRODUCTS = [
+            {
+                id: 'VET-001',
+                name: 'Consulta Veterinaria Presencial',
+                category: 'medico',
+                categoryLabel: 'Servicio Médico',
+                badge: 'Servicio Especializado',
+                price: 450,
+                image: 'https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?auto=format&fit=crop&w=600&q=80',
+                description: 'Examen físico completo, auscultación, diagnóstico primario y receta médica formulada.'
+            },
+            {
+                id: 'VET-002',
+                name: 'Asesoría Tele-Veterinaria En Línea',
+                category: 'asesoria',
+                categoryLabel: 'Asesoría Online',
+                badge: 'Disponible Directo',
+                price: 300,
+                image: 'https://images.unsplash.com/photo-1576201836106-db1758fd1c97?auto=format&fit=crop&w=600&q=80',
+                description: 'Videollamada de 30 min con un médico certificado para orientación inmediata.'
+            },
+            {
+                id: 'VET-003',
+                name: 'Vacuna Múltiple Canina / Felina',
+                category: 'medico',
+                categoryLabel: 'Servicio Médico',
+                badge: 'Servicio Especializado',
+                price: 380,
+                image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=600&q=80',
+                description: 'Inmunización con vacuna de alta calidad e inscripción en expediente digital.'
+            },
+            {
+                id: 'VET-004',
+                name: 'Suscripción Alimento Pro + Vitaminas',
+                category: 'suscripcion',
+                categoryLabel: 'Suscripción Mensual',
+                badge: 'Popular',
+                price: 1250,
+                image: 'https://images.unsplash.com/photo-1589924691995-400dc9ecc119?auto=format&fit=crop&w=600&q=80',
+                description: 'Bolsa de alimento mensual seleccionada + lote de complejo vitamínico a domicilio.'
+            },
+            {
+                id: 'VET-005',
+                name: 'Profilaxis Dental Ultrasónica',
+                category: 'medico',
+                categoryLabel: 'Servicio Médico',
+                badge: 'Servicio Especializado',
+                price: 1800,
+                image: 'https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=600&q=80',
+                description: 'Limpieza profunda de sarro, pulido dental y evaluación bucal intensiva.'
+            },
+            {
+                id: 'VET-006',
+                name: 'Baño Médico & Corte Grooming',
+                category: 'grooming',
+                categoryLabel: 'Cuidados & Grooming',
+                badge: 'Disponible',
+                price: 400,
+                image: 'https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&w=600&q=80',
+                description: 'Baño medicado dermatológico, limpieza de oídos, vaciado de glándulas y corte de uñas.'
+            },
+            {
+                id: 'VET-007',
+                name: 'Kit Suplemento Nutricional Omega 3',
+                category: 'suscripcion',
+                categoryLabel: 'Producto Nutricional',
+                badge: 'Disponible',
+                price: 520,
+                image: 'https://images.unsplash.com/photo-1584017911766-d451b3d0e843?auto=format&fit=crop&w=600&q=80',
+                description: 'Frasco de omegas y antioxidantes para fortalecer el pelaje y la movilidad articular.'
+            },
+            {
+                id: 'VET-008',
+                name: 'Desparasitación Interna y Externa',
+                category: 'medico',
+                categoryLabel: 'Servicio Médico',
+                badge: 'Disponible',
+                price: 250,
+                image: 'https://images.unsplash.com/photo-1601758228041-f3b2795255f1?auto=format&fit=crop&w=600&q=80',
+                description: 'Tratamiento efectivo contra garrapatas, pulgas y parásitos intestinales.'
+            }
+        ];
+
+        // ESTADO DEL CARRITO
+        let cart = [];
+
+        // AL CARGAR LA PÁGINA
+        document.addEventListener('DOMContentLoaded', () => {
+            loadCartFromStorage();
+            renderCatalog(PRODUCTS);
+            updateCartUI();
+        });
+
+        // CARGAR CARRITO DE LOCALSTORAGE
+        function loadCartFromStorage() {
+            const saved = localStorage.getItem('petcare_cart');
+            if (saved) {
+                try {
+                    cart = JSON.parse(saved);
+                } catch (e) {
+                    cart = [];
+                }
+            }
+        }
+
+        // GUARDAR CARRITO EN LOCALSTORAGE
+        function saveCartToStorage() {
+            localStorage.setItem('petcare_cart', JSON.stringify(cart));
+        }
+
+        // RENDERIZAR EL CATÁLOGO
+        function renderCatalog(items) {
+            const grid = document.getElementById('catalogGrid');
+            const emptyMsg = document.getElementById('emptyCatalog');
+
+            grid.innerHTML = '';
+
+            if (items.length === 0) {
+                emptyMsg.classList.remove('hidden');
+                return;
+            } else {
+                emptyMsg.classList.add('hidden');
+            }
+
+            items.forEach(item => {
+                const card = document.createElement('div');
+                card.className = "bg-white rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden group";
+                
+                card.innerHTML = `
+                    <div class="relative overflow-hidden h-48 bg-slate-100">
+                        <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-3 left-3 bg-white/90 backdrop-blur-md text-slate-800 text-[10px] font-bold px-2.5 py-1 rounded-full border border-slate-200 shadow-sm">
+                            ${item.badge}
+                        </span>
+                    </div>
+                    <div class="p-5 flex flex-col flex-grow justify-between space-y-4">
+                        <div>
+                            <span class="text-[11px] font-semibold text-brand-600 uppercase tracking-wide">${item.categoryLabel}</span>
+                            <h3 class="text-base font-bold text-slate-900 mt-0.5 leading-snug">${item.name}</h3>
+                            <p class="text-xs text-slate-500 mt-2 line-clamp-2 leading-relaxed">${item.description}</p>
+                        </div>
+                        <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+                            <div>
+                                <span class="text-[10px] text-slate-400 block">Precio Estimado</span>
+                                <span class="text-lg font-extrabold text-slate-900">L ${item.price.toLocaleString()}</span>
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <a href="https://wa.me/50497335455?text=${encodeURIComponent('Hola 😊 Quisiera consultar sobre el servicio/producto: ' + item.name + ' (ID: ' + item.id + ')')}" target="_blank" class="p-2.5 rounded-xl bg-accent-50 text-accent-600 hover:bg-accent-500 hover:text-white transition-colors" title="Consultar por WhatsApp">
+                                    <i class="fab fa-whatsapp text-sm"></i>
+                                </a>
+                                <button onclick="addToCart('${item.id}')" class="px-3 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-semibold flex items-center gap-1.5 shadow-sm transition-colors">
+                                    <i class="fas fa-cart-plus"></i> Agregar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // FILTRAR CATÁLOGO EN TIEMPO REAL
+        function filterCatalog() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const category = document.getElementById('categoryFilter').value;
+            const maxPrice = parseFloat(document.getElementById('priceRange').value);
+
+            const filtered = PRODUCTS.filter(product => {
+                const matchesSearch = product.name.toLowerCase().includes(query) || product.description.toLowerCase().includes(query);
+                const matchesCategory = category === 'all' || product.category === category;
+                const matchesPrice = product.price <= maxPrice;
+                return matchesSearch && matchesCategory && matchesPrice;
+            });
+
+            renderCatalog(filtered);
+        }
+
+        function updatePriceLabel(val) {
+            document.getElementById('priceValue').innerText = `L ${parseInt(val).toLocaleString()}`;
+        }
+
+        function resetFilters() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('categoryFilter').value = 'all';
+            document.getElementById('priceRange').value = '3000';
+            updatePriceLabel(3000);
+            filterCatalog();
+        }
+
+        // LÓGICA DEL CARRITO
+        function addToCart(productId) {
+            const product = PRODUCTS.find(p => p.id === productId);
+            if (!product) return;
+
+            const existing = cart.find(item => item.id === productId);
+            if (existing) {
+                existing.quantity += 1;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+
+            saveCartToStorage();
+            updateCartUI();
+            showToast(`"${product.name}" agregado al carrito`);
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            saveCartToStorage();
+            updateCartUI();
+        }
+
+        function changeQuantity(productId, delta) {
+            const item = cart.find(i => i.id === productId);
+            if (item) {
+                item.quantity += delta;
+                if (item.quantity <= 0) {
+                    removeFromCart(productId);
+                } else {
+                    saveCartToStorage();
+                    updateCartUI();
+                }
+            }
+        }
+
+        function updateCartUI() {
+            const container = document.getElementById('cartItemsContainer');
+            const cartBadge = document.getElementById('cartBadge');
+            const subtotalEl = document.getElementById('cartSubtotal');
+            const totalEl = document.getElementById('cartTotal');
+
+            const totalCount = cart.reduce((acc, item) => acc + item.quantity, 0);
+            cartBadge.innerText = totalCount;
+
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-12 text-slate-400">
+                        <i class="fas fa-shopping-basket text-4xl mb-3"></i>
+                        <p class="text-xs font-semibold text-slate-500">Tu carrito está vacío</p>
+                        <p class="text-[11px] text-slate-400 mt-1">Explora nuestro catálogo para agregar servicios o productos.</p>
+                    </div>
+                `;
+                subtotalEl.innerText = 'L 0.00';
+                totalEl.innerText = 'L 0.00';
+                return;
+            }
+
+            let total = 0;
+            container.innerHTML = '';
+
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+
+                const itemRow = document.createElement('div');
+                itemRow.className = "flex gap-3 bg-slate-50 p-3 rounded-2xl border border-slate-200/80 items-center";
+                itemRow.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" class="w-14 h-14 object-cover rounded-xl shrink-0">
+                    <div class="flex-grow min-w-0">
+                        <h4 class="text-xs font-bold text-slate-800 truncate">${item.name}</h4>
+                        <p class="text-[10px] text-slate-400">${item.id} | L ${item.price}</p>
+                        <div class="flex items-center gap-2 mt-2">
+                            <button onclick="changeQuantity('${item.id}', -1)" class="w-5 h-5 rounded-md bg-white border border-slate-300 text-slate-600 font-bold text-xs flex items-center justify-center hover:bg-slate-100">-</button>
+                            <span class="text-xs font-bold text-slate-800">${item.quantity}</span>
+                            <button onclick="changeQuantity('${item.id}', 1)" class="w-5 h-5 rounded-md bg-white border border-slate-300 text-slate-600 font-bold text-xs flex items-center justify-center hover:bg-slate-100">+</button>
+                        </div>
+                    </div>
+                    <div class="text-right shrink-0">
+                        <span class="text-xs font-extrabold text-slate-900 block">L ${itemTotal.toLocaleString()}</span>
+                        <button onclick="removeFromCart('${item.id}')" class="text-slate-400 hover:text-red-500 text-xs mt-1 transition-colors" title="Eliminar">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
+                `;
+                container.appendChild(itemRow);
+            });
+
+            subtotalEl.innerText = `L ${total.toLocaleString()}.00`;
+            totalEl.innerText = `L ${total.toLocaleString()}.00`;
+        }
+
+        // TOGGLE DRAWER Y OVERLAY
+        function toggleCartDrawer() {
+            const drawer = document.getElementById('cartDrawer');
+            const backdrop = document.getElementById('cartBackdrop');
+
+            if (drawer.classList.contains('translate-x-full')) {
+                drawer.classList.remove('translate-x-full');
+                backdrop.classList.remove('opacity-0', 'pointer-events-none');
+            } else {
+                drawer.classList.add('translate-x-full');
+                backdrop.classList.add('opacity-0', 'pointer-events-none');
+            }
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        // CHECKOUT A WHATSAPP DILIGENCIADO SEGÚN ESPECIFICACIÓN
+        function checkoutWhatsApp() {
+            if (cart.length === 0) {
+                showToast('Agrega al menos un servicio o producto al carrito', true);
+                return;
+            }
+
+            let message = "Hola 😊 Me interesa cotizar y conocer disponibilidad de estos servicios/productos veterinarios que vi en su web:\n\n";
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                const sub = item.price * item.quantity;
+                total += sub;
+                message += `${index + 1}. *${item.name}*\n   • ID/Código: ${item.id}\n   • Cantidad: ${item.quantity}\n   • Precio Unitario: L ${item.price.toLocaleString()}\n   • Subtotal: L ${sub.toLocaleString()}\n\n`;
+            });
+
+            message += `*Total Referencial: L ${total.toLocaleString()}.00*\n\n`;
+            message += "¿Me confirmas disponibilidad y próximos pasos para coordinar la cita o la entrega?";
+
+            const encodedURL = `https://wa.me/50497335455?text=${encodeURIComponent(message)}`;
+            window.open(encodedURL, '_blank');
+        }
+
+        // SIMULADOR DE RECORDATORIOS
+        function calculateReminder() {
+            const type = document.getElementById('petType').value;
+            const age = document.getElementById('petAge').value;
+            const resultBox = document.getElementById('reminderResult');
+            const resTitle = document.getElementById('resTitle');
+            const resDesc = document.getElementById('resDesc');
+            const btnWA = document.getElementById('btnReminderWA');
+
+            let scheme = "";
+            let detail = "";
+
+            if (type === 'perro') {
+                if (age === 'cachorro') {
+                    scheme = "Esquema Primario Canino (Múltiple + Desparasitación)";
+                    detail = "Requiere dosis de refuerzo cada 3-4 semanas hasta los 4 meses de edad.";
+                } else {
+                    scheme = "Refuerzo Anual Rabia + Sextuple Canina";
+                    detail = "Se recomienda aplicación una vez al año acompañada de examen físico.";
+                }
+            } else {
+                if (age === 'cachorro') {
+                    scheme = "Esquema Inicial Felino (Triple Felina)";
+                    detail = "Protección esencial contra rinotraqueitis, calicivirus y panleucopenia.";
+                } else {
+                    scheme = "Refuerzo Anual Triple Felina + Rabia";
+                    detail = "Refuerzo anual recomendado para prevenir enfermedades virales transmisibles.";
+                }
+            }
+
+            resTitle.innerText = `Recomendación: ${scheme}`;
+            resDesc.innerText = detail;
+            btnWA.href = `https://wa.me/50497335455?text=${encodeURIComponent('Hola 😊 Quisiera agendar el siguiente recordatorio de vacunación para mi ' + type + ': ' + scheme)}`;
+
+            resultBox.classList.remove('hidden');
+        }
+
+        // FORMULARIO DE CONTACTO SIMULADO CON WHATSAPP
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            showToast('Redirigiendo a WhatsApp con tu consulta...');
+            setTimeout(() => {
+                window.open('https://wa.me/50497335455?text=' + encodeURIComponent('Hola 😊 Envié una consulta desde el formulario web de PetCare.'), '_blank');
+            }, 800);
+        }
+
+        // MOSTRAR MENSAJES TOAST
+        function showToast(msg, isError = false) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toastMessage');
+            const toastIcon = document.getElementById('toastIcon');
+
+            toastMsg.innerText = msg;
+            if (isError) {
+                toastIcon.className = "fas fa-exclamation-circle text-red-500 text-base";
+            } else {
+                toastIcon.className = "fas fa-check-circle text-accent-500 text-base";
+            }
+
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
